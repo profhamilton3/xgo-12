@@ -1,5 +1,5 @@
 {
-    "name": "xgo-12-magneticcompass",
+    "name": "magneticfieldsensing",
     "description": "",
     "dependencies": {
         "core": "*",
@@ -27,5 +27,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj"
+    "preferredEditor": "blocksprj"
 }
