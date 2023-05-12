@@ -1,9 +1,9 @@
-let dx = 0
-let dy = 0
-let dz = 0
-let ux = 0
-let uy = 0
 let uz = 0
+let uy = 0
+let ux = 0
+let dz = 0
+let dy = 0
+let dx = 0
 let buf = control.createBuffer(12)
 radio.setGroup(99)
 basic.showIcon(IconNames.Heart)
@@ -21,12 +21,12 @@ basic.forever(function on_forever() {
     uy = input.magneticForce(Dimension.Y)
     uz = input.magneticForce(Dimension.Z)
     buf.setNumber(NumberFormat.Int16LE, 0, ux)
-    buf.setNumber(NumberFormat.Int16LE, 2, ux)
-    buf.setNumber(NumberFormat.Int16LE, 4, ux)
+    buf.setNumber(NumberFormat.Int16LE, 2, uy)
+    buf.setNumber(NumberFormat.Int16LE, 4, uz)
     buf.setNumber(NumberFormat.Int16LE, 6, dx)
     buf.setNumber(NumberFormat.Int16LE, 8, dy)
     buf.setNumber(NumberFormat.Int16LE, 12, dz)
-    if (input.magneticForce(Dimension.Z) > 10) {
+    if (input.magneticForce(Dimension.Z) > 20) {
         basic.showIcon(IconNames.Happy)
         xgo.execution_action(xgo.action_enum.Request_feeding)
         soundExpression.giggle.playUntilDone()

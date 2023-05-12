@@ -1,10 +1,9 @@
-
-dx = 0
-dy = 0
-dz = 0
-ux = 0
-uy = 0
 uz = 0
+uy = 0
+ux = 0
+dz = 0
+dy = 0
+dx = 0
 buf = bytearray(12)
 radio.set_group(99)
 basic.show_icon(IconNames.HEART)
@@ -12,7 +11,7 @@ radio.set_transmit_power(7)
 xgo.init_xgo_serial(SerialPin.P2, SerialPin.P1)
 
 def on_forever():
-    global buf, ux, uy, uz, dx, dy, dz
+    global buf, ux, dx, dy, dz, uy, uz
     buf = bytearray(8)
     ux = input.magnetic_force(Dimension.X)
     dx = input.acceleration(Dimension.X)
@@ -23,12 +22,12 @@ def on_forever():
     uy = input.magnetic_force(Dimension.Y)
     uz = input.magnetic_force(Dimension.Z)
     buf.set_number(NumberFormat.INT16_LE, 0, ux)
-    buf.set_number(NumberFormat.INT16_LE, 2, ux)
-    buf.set_number(NumberFormat.INT16_LE, 4, ux)
+    buf.set_number(NumberFormat.INT16_LE, 2, uy)
+    buf.set_number(NumberFormat.INT16_LE, 4, uz)
     buf.set_number(NumberFormat.INT16_LE, 6, dx)
     buf.set_number(NumberFormat.INT16_LE, 8, dy)
     buf.set_number(NumberFormat.INT16_LE, 12, dz)
-    if input.magnetic_force(Dimension.Z) > 10:
+    if input.magnetic_force(Dimension.Z) > 20:
         basic.show_icon(IconNames.HAPPY)
         xgo.execution_action(xgo.action_enum.REQUEST_FEEDING)
         soundExpression.giggle.play_until_done()
